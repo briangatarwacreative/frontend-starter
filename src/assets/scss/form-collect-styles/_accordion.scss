@@ -1,0 +1,13 @@
+.accordion-button {
+  border: none;
+  &:after {
+    display: none;
+  }
+  &:not(.collapsed) {
+    .accordion-status-icon {
+      transform: rotate(90deg);
+      transform-origin: center;
+      @include transition;
+    }
+  }
+}

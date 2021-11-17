@@ -1,0 +1,43 @@
+/* Scale Down */
+@-webkit-keyframes scaleDown {
+  from {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25 1.25);
+    transform: scale3d(1.25, 1.25 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes scaleDown {
+  from {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25 1.25);
+    transform: scale3d(1.25, 1.25 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.animate__scaleDown {
+  -webkit-animation-name: scaleDown;
+  animation-name: scaleDown;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+[data-aos^="zoom"][data-aos^="zoom"] {
+  opacity: 1;
+}

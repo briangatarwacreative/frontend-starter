@@ -1,0 +1,64 @@
+.list-group-numbered {
+  & > li {
+    &:before {
+      z-index: inherit;
+    }
+  }
+
+  &.list-group-numbered-bold {
+    & > li {
+      &:before {
+        font-weight: $list-group-numbered-bold;
+      }
+    }
+  }
+  &.list-group-numbered-leading-zero {
+    & > li {
+      &:before {
+        content: counters(section, ".", decimal-leading-zero);
+      }
+    }
+  }
+  &[class*="list-group-numbered-pos"] {
+    & > li {
+      position: relative;
+      &:before {
+        position: absolute;
+        line-height: 1;
+        display: block;
+      }
+    }
+  }
+  &.list-group-numbered-pos-1 {
+    & > li {
+      &:before {
+        left: $list-group-numbered-pos-x;
+        top: $list-group-numbered-pos-y;
+      }
+    }
+  }
+  &.list-group-numbered-pos-2 {
+    & > li {
+      &:before {
+        right: $list-group-numbered-pos-x;
+        top: $list-group-numbered-pos-y;
+      }
+    }
+  }
+  &.list-group-numbered-pos-3 {
+    & > li {
+      &:before {
+        left: $list-group-numbered-pos-x;
+        bottom: $list-group-numbered-pos-y-bottom;
+      }
+    }
+  }
+  &.list-group-numbered-pos-4 {
+    & > li {
+      &:before {
+        right: $list-group-numbered-pos-x;
+        bottom: $list-group-numbered-pos-y-bottom;
+      }
+    }
+  }
+}

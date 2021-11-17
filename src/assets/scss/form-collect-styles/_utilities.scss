@@ -1,0 +1,157 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    // Text utilities
+    "font-family":
+      map-merge(
+        map-get($utilities, "font-family"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "font-family"), "values"),
+              ($new-font-family)
+            ),
+        )
+      ),
+    "font-size":
+      map-merge(
+        map-get($utilities, "font-size"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "font-size"), "values"),
+              ($new-font-sizes)
+            ),
+        )
+      ),
+    "letter-spacing": (
+      property: letter-spacing,
+      class: ls,
+      values: $letter-spacing,
+    ),
+    "text-transform":
+      map-merge(
+        map-get($utilities, "text-transform"),
+        (
+          values:
+            append(
+              map-get(map-get($utilities, "text-transform"), "values"),
+              (none)
+            ),
+        )
+      ),
+    // Sizing Utilities
+    "width":
+      map-merge(
+        map-get($utilities, "width"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "width"), "values"),
+              ($new-sizing)
+            ),
+        )
+      ),
+    "height":
+      map-merge(
+        map-get($utilities, "height"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "height"), "values"),
+              ($new-sizing)
+            ),
+        )
+      ),
+    "min-width": (
+      property: min-width,
+      class: min-w-rem,
+      values: create-map-through-loop($sizing-levels),
+    ),
+    "min-height": (
+      property: min-height,
+      class: min-h-rem,
+      values:
+        map-merge(
+          create-map-through-loop($sizing-levels),
+          (
+            25: 25rem,
+            30: 30rem,
+            35: 35rem,
+          )
+        ),
+    ),
+    "max-width-rem": (
+      property: max-width,
+      class: mw-rem,
+      values: create-map-through-loop($sizing-levels),
+    ),
+    "max-height-rem": (
+      property: max-height,
+      class: mh-rem,
+      values: create-map-through-loop($sizing-levels),
+    ),
+    "viewport-height": (
+      map-merge(
+        map-get($utilities, "viewport-height"),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, "viewport-height"), "values"),
+              ($new-viewport-height)
+            ),
+        )
+      )
+    ),
+    // Border Utilities
+    "border-top-color":
+      (
+        property: border-top-color,
+        class: border-top,
+        values: $theme-colors,
+      ),
+    // Border Utilities
+    "border-end-color":
+      (
+        property: border-right-color,
+        class: border-end,
+        values: $theme-colors,
+      ),
+    "border-bottom-color": (
+      property: border-bottom-color,
+      class: border-bottom,
+      values: $theme-colors,
+    ),
+    "border-left-color": (
+      property: border-left-color,
+      class: border-start,
+      values: $theme-colors,
+    ),
+    // Positioning utilities
+    "z-index":
+      (
+        property: z-index,
+        class: zi,
+        values: $z-index,
+      ),
+    // Opacity utility
+    "opacity":
+      (
+        property: opacity,
+        class: opacity,
+        values: (
+          0: 0,
+          10: 0.1,
+          20: 0.2,
+          30: 0.3,
+          40: 0.4,
+          50: 0.5,
+          60: 0.6,
+          70: 0.7,
+          80: 0.8,
+          90: 0.9,
+          100: 1,
+        ),
+      )
+  )
+);

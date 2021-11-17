@@ -1,0 +1,77 @@
+// Rahisi and User Custom Variables
+@import "./custom-variables";
+@import "./form-collect-styles/variables";
+
+// Bootstrap Configuration
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+// Rahisi Configuration
+@import "./form-collect-styles/functions";
+@import "./form-collect-styles/extensions";
+@import "./form-collect-styles/mixins";
+
+// Bootstrap Utilities
+@import "../../../node_modules/bootstrap/scss/utilities";
+
+// Rahisi Utilities
+@import "./form-collect-styles/utilities";
+
+// Bootstrap Layout & Components
+@import "../../../node_modules/bootstrap/scss/root";
+@import "../../../node_modules/bootstrap/scss/reboot";
+@import "../../../node_modules/bootstrap/scss/type";
+@import "../../../node_modules/bootstrap/scss/images";
+@import "../../../node_modules/bootstrap/scss/containers";
+@import "../../../node_modules/bootstrap/scss/grid";
+@import "../../../node_modules/bootstrap/scss/tables";
+@import "../../../node_modules/bootstrap/scss/forms";
+@import "../../../node_modules/bootstrap/scss/buttons";
+@import "../../../node_modules/bootstrap/scss/transitions";
+@import "../../../node_modules/bootstrap/scss/dropdown";
+@import "../../../node_modules/bootstrap/scss/button-group";
+@import "../../../node_modules/bootstrap/scss/nav";
+@import "../../../node_modules/bootstrap/scss/navbar";
+@import "../../../node_modules/bootstrap/scss/card";
+@import "../../../node_modules/bootstrap/scss/accordion";
+@import "../../../node_modules/bootstrap/scss/breadcrumb";
+@import "../../../node_modules/bootstrap/scss/pagination";
+@import "../../../node_modules/bootstrap/scss/badge";
+@import "../../../node_modules/bootstrap/scss/alert";
+@import "../../../node_modules/bootstrap/scss/progress";
+@import "../../../node_modules/bootstrap/scss/list-group";
+@import "../../../node_modules/bootstrap/scss/close";
+@import "../../../node_modules/bootstrap/scss/toasts";
+@import "../../../node_modules/bootstrap/scss/modal";
+@import "../../../node_modules/bootstrap/scss/tooltip";
+@import "../../../node_modules/bootstrap/scss/popover";
+@import "../../../node_modules/bootstrap/scss/carousel";
+@import "../../../node_modules/bootstrap/scss/spinners";
+
+// Bootstrap Helpers
+@import "../../../node_modules/bootstrap/scss/helpers";
+
+// Bootstrap Utilities
+@import "../../../node_modules/bootstrap/scss/utilities/api";
+
+// Form Collect Layout & Components
+@import "./form-collect-styles/reboot";
+@import "./form-collect-styles/type";
+@import "./form-collect-styles/animations";
+@import "./form-collect-styles/transform";
+@import "./form-collect-styles/background";
+@import "./form-collect-styles/buttons";
+@import "./form-collect-styles/cursor";
+@import "./form-collect-styles/card";
+@import "./form-collect-styles/list-group";
+@import "./form-collect-styles/images";
+@import "./form-collect-styles/svg";
+@import "./form-collect-styles/icons";
+@import "./form-collect-styles/slider";
+@import "./form-collect-styles/tabs";
+@import "./form-collect-styles/accordion";
+@import "./form-collect-styles/forms";
+
+// User Custom SCSS
+@import "./custom-styles";

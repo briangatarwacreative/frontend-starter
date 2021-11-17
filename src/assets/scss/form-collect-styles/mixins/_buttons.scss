@@ -1,0 +1,195 @@
+// Bootstrap Buttons Overwrite - Button
+@mixin button-variant(
+  $background,
+  $border,
+  $color: color-contrast($background),
+  $hover-background:
+    if(
+      $color == $color-contrast-light,
+      shade-color($background, 15%),
+      tint-color($background, 15%)
+    ),
+  $hover-border:
+    if(
+      $color == $color-contrast-light,
+      shade-color($border, 20%),
+      tint-color($border, 10%)
+    ),
+  $hover-color: color-contrast($hover-background),
+  $active-background:
+    if(
+      $color == $color-contrast-light,
+      shade-color($background, 20%),
+      tint-color($background, 20%)
+    ),
+  $active-border:
+    if(
+      $color == $color-contrast-light,
+      shade-color($border, 25%),
+      tint-color($border, 10%)
+    ),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  color: $color;
+  @include gradient-bg($background);
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  &:hover {
+    color: $hover-color;
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    color: $hover-color;
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+    @if $enable-shadows {
+      @include box-shadow(
+        $btn-box-shadow,
+        0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), 0.5)
+      );
+    } @else {
+      box-shadow: none;
+    }
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: $active-color;
+    background-color: $active-background;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows {
+        @include box-shadow(
+          $btn-active-box-shadow,
+          0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), 0.5)
+        );
+      } @else {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $disabled-color;
+    background-color: $disabled-background;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: $disabled-border;
+  }
+}
+
+// Bootstrap Buttons Overwrite - Outline Button
+@mixin button-outline-variant(
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    box-shadow: none;
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  &.dropdown-toggle.show {
+    color: $active-color;
+    background-color: $active-background;
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows {
+        @include box-shadow(
+          $btn-active-box-shadow,
+          0 0 0 $btn-focus-width rgba($color, 0.5)
+        );
+      } @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
+// Rahisi Buttons - Text Buttons
+@mixin button-text(
+  $text-color,
+  $text-state-color:
+    darken($text-color, $emphasized-link-hover-darken-percentage)
+) {
+  color: $text-color;
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $text-state-color;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    color: $text-state-color;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: $text-state-color;
+  }
+
+  // Parent Buttons
+  .btn-parent:disabled &,
+  .btn-parent.disabled & {
+    color: $text-color !important;
+  }
+
+  .btn-parent:hover &,
+  .btn-parent:focus &,
+  .btn-parent.focus & {
+    color: $text-state-color !important;
+  }
+
+  .btn-parent:not(:disabled):not(.disabled).active &,
+  .btn-parent:not(:disabled):not(.disabled):active &,
+  .show > .btn-parent.dropdown-toggle & {
+    color: $text-state-color !important;
+  }
+
+  .btn-parent:not(:disabled):not(.disabled).active:focus &,
+  .btn-parent:not(:disabled):not(.disabled):active:focus &,
+  .show > .btn-parent.dropdown-toggle:focus & {
+    color: $text-state-color !important;
+  }
+}

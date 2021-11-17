@@ -1,0 +1,14 @@
+// Swiper Elements
+.swiper-button-prev,
+.swiper-button-next {
+  font-size: var(--swiper-navigation-size);
+}
+.js-slider-prev-btn,
+.js-slider-next-btn {
+  cursor: pointer;
+  &.swiper-button-disabled {
+    cursor: auto;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+}
