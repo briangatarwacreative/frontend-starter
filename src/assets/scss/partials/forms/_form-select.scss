@@ -1,0 +1,11 @@
+.form-select {
+  &.form-select-lean {
+    background-color: transparent;
+    background-position-x: right;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    padding: 0 0 0.3rem !important;
+    border-radius: 0 !important;
+  }
+}

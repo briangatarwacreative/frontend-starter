@@ -1,0 +1,17 @@
+.icon-holder,
+.icon-holder-lg,
+.icon-holder-sm {
+  @include d-flex($justify-content: center);
+}
+.icon-holder {
+  width: $btn-icon-only-width;
+  height: $btn-icon-only-height;
+}
+.icon-holder-lg {
+  width: $btn-icon-only-width-lg;
+  height: $btn-icon-only-height-lg;
+}
+.icon-holder-sm {
+  width: $btn-icon-only-width-sm;
+  height: $btn-icon-only-height-sm;
+}

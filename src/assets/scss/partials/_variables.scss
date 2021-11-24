@@ -1,0 +1,494 @@
+// Color system
+// Grays
+$gray-100: #fefefe !default;
+$gray-200: #fbfbfb !default;
+$gray-300: #e6e6e6 !default;
+$gray-400: #dce4e8 !default;
+$gray-400-b: #deecf1 !default;
+$gray-500: #c8c8c8 !default;
+$gray-600: #838e95 !default;
+$gray-700: #7b8fa4 !default;
+$gray-800: #6d88b1 !default;
+$gray-900: #262932 !default;
+
+// Colors
+$black: #000000 !default;
+$white: #ffffff !default;
+$blue: #4760ff !default;
+$blue-darker: #1b4580 !default;
+$blue-lighter: #809bb4 !default;
+$blue-lighter-2: #f2f5fb !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #d0445a !default;
+$yellow: #f17f1b !default;
+$green: #748f53 !default;
+$green-lighter: #42ba96 !default;
+$teal: #2ec4b6 !default;
+$cyan: #3bcaec !default;
+
+// Theme Colors
+$primary: $black !default;
+$secondary: $gray-800 !default;
+$success: $teal !default;
+$info: $purple !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $blue-lighter-2 !default;
+$dark: $blue-darker !default;
+
+// Body Color
+$body-color: $primary !default;
+
+// Color Variants
+$bg-soft-value: 0.13 !default;
+$button-soft-value: 0.25 !default;
+
+// Darker Shade Contrast
+$darker-shade-contrast: $dark !default;
+
+// Links
+$emphasized-link-hover-darken-percentage: 35% !default;
+
+// Borders
+$border-color: currentColor !default;
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: (
+    $spacer * 0.25,
+  ),
+  2: (
+    $spacer * 0.5,
+  ),
+  3: $spacer,
+  4: (
+    $spacer * 1.5,
+  ),
+  5: (
+    $spacer * 2,
+  ),
+  6: (
+    $spacer * 2.5,
+  ),
+  7: (
+    $spacer * 3,
+  ),
+  8: (
+    $spacer * 3.5,
+  ),
+  9: (
+    $spacer * 4,
+  ),
+  10: (
+    $spacer * 4.5,
+  ),
+  11: (
+    $spacer * 5,
+  ),
+  12: (
+    $spacer * 5.5,
+  ),
+  13: (
+    $spacer * 6,
+  ),
+  14: (
+    $spacer * 6.5,
+  ),
+  15: (
+    $spacer * 7,
+  ),
+  16: (
+    $spacer * 7.5,
+  ),
+  17: (
+    $spacer * 8,
+  ),
+  18: (
+    $spacer * 8.5,
+  ),
+  19: (
+    $spacer * 9,
+  ),
+  20: (
+    $spacer * 9.5,
+  ),
+  21: (
+    $spacer * 10,
+  ),
+  22: (
+    $spacer * 10.5,
+  ),
+  23: (
+    $spacer * 11,
+  ),
+  24: (
+    $spacer * 11.5,
+  ),
+  25: (
+    $spacer * 12,
+  ),
+  26: (
+    $spacer * 12.5,
+  ),
+  27: (
+    $spacer * 13,
+  ),
+  28: (
+    $spacer * 13.5,
+  ),
+  29: (
+    $spacer * 14,
+  ),
+  30: (
+    $spacer * 14.5,
+  ),
+) !default;
+
+// Sizing Levels
+$sizing-levels: 20 !default;
+
+//Enable Negative Margins
+$enable-negative-margins: true !default;
+
+$negative-spacers: (
+  "n0": 0,
+  "n1": (
+    -($spacer * 0.25),
+  ),
+  "n2": (
+    -($spacer * 0.5),
+  ),
+  "n3": -
+    (
+      $spacer,
+    ),
+  "n4": (
+    -($spacer * 1.5),
+  ),
+  "n5": (
+    -($spacer * 2),
+  ),
+  "n6": (
+    -($spacer * 2.5),
+  ),
+  "n7": (
+    -($spacer * 3),
+  ),
+  "n8": (
+    -($spacer * 3.5),
+  ),
+  "n9": (
+    -($spacer * 4),
+  ),
+  "n10": (
+    -($spacer * 4.5),
+  ),
+  "n11": (
+    -($spacer * 5),
+  ),
+  "n12": (
+    -($spacer * 5.5),
+  ),
+  "n13": (
+    -($spacer * 6),
+  ),
+  "n14": (
+    -($spacer * 6.5),
+  ),
+  "n15": (
+    -($spacer * 7),
+  ),
+  "n16": (
+    -($spacer * 7.5),
+  ),
+  "n17": (
+    -($spacer * 8),
+  ),
+  "n18": (
+    -($spacer * 8.5),
+  ),
+  "n19": (
+    -($spacer * 9),
+  ),
+  "n20": (
+    -($spacer * 9.5),
+  ),
+  "n21": (
+    -($spacer * 10),
+  ),
+  "n22": (
+    -($spacer * 10.5),
+  ),
+  "n23": (
+    -($spacer * 11),
+  ),
+  "n24": (
+    -($spacer * 11.5),
+  ),
+  "n25": (
+    -($spacer * 12),
+  ),
+  "n26": (
+    -($spacer * 12.5),
+  ),
+  "n27": (
+    -($spacer * 13),
+  ),
+  "n28": (
+    -($spacer * 13.5),
+  ),
+  "n29": (
+    -($spacer * 14),
+  ),
+  "n30": (
+    -($spacer * 14.5),
+  ),
+) !default;
+
+// Typography
+//
+// Font type, font-size, letter-spacing and more
+$font-family-base-1: "Work Sans", sans-serif !default;
+$font-family-base-2: "Eczar", serif !default;
+$font-family-base: $font-family-base-1 !default;
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * 0.875 !default;
+$font-size-xs: $font-size-base * 0.7 !default;
+
+$font-weight-light: 400 !default;
+$font-weight-normal: 400 !default;
+$font-weight-semi-bold-600: 600 !default;
+$font-weight-bold: $font-weight-semi-bold-600 !default;
+
+$headings-font-weight: $font-weight-normal !default;
+$headings-font-family: $font-family-base-2 !default;
+
+$letter-spacing: (
+  0: 0px,
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+  6: 6px,
+  7: 7px,
+  8: 8px,
+  9: 9px,
+  10: 10px,
+) !default;
+
+$list-group-numbered-pos-x: -1rem !default;
+$list-group-numbered-pos-y: 1rem !default;
+$list-group-numbered-pos-y-bottom: 2rem !default;
+$list-group-numbered-bold: $font-weight-bold !default;
+
+$text-transparent-stroke-width: 1.5px !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 980px,
+  xl: 1170px,
+  xxl: 1340px,
+) !default;
+
+// Z-index
+//
+// Z-index Classes for different positioning
+$z-index: (
+  0: 0,
+  1: 10,
+  2: 50,
+  3: 100,
+  4: 150,
+  5: 200,
+) !default;
+
+// Paragraphs
+//
+// Style p element.
+$paragraph-font-size: 1.15rem !default;
+$paragraph-line-height: 1.7 !default;
+
+// Navs
+$nav-link-color: $primary !default;
+$nav-link-hover-color: $secondary !default;
+
+// Navbar
+$navbar-nav-link-padding-x: 0.8rem !default;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+$input-btn-padding-y: 0.9375rem !default;
+$input-btn-padding-x: 2rem !default;
+
+$input-btn-icon-only-width: 2.875rem !default;
+$input-btn-icon-only-height: 2.875rem !default;
+
+$input-btn-icon-only-width-sm: 2.43rem !default;
+$input-btn-icon-only-height-sm: 2.43rem !default;
+
+$input-btn-icon-only-width-lg: 3.625rem !default;
+$input-btn-icon-only-height-lg: 3.625rem !default;
+
+$enable-custom-hover-animations-for-buttons: true !default;
+
+$btn-hover-translatey-val: -0.3rem !default;
+
+$btn-hover-translatel-val: -0.3rem !default;
+$btn-hover-translater-val: 0.3rem !default;
+
+$btn-letter-spacing: normal !default;
+$btn-text-transform: none !default;
+
+$btn-focus-box-shadow: none !default;
+$btn-active-box-shadow: none !default;
+$btn-box-shadow: none !default;
+
+$btn-border-radius: 0 !default;
+$btn-border-radius-sm: 0 !default;
+$btn-border-radius-lg: 0 !default;
+
+$btn-icon-only-width: $input-btn-icon-only-width !default;
+$btn-icon-only-height: $input-btn-icon-only-height !default;
+
+$btn-icon-only-width-sm: $input-btn-icon-only-width-sm !default;
+$btn-icon-only-height-sm: $input-btn-icon-only-height-sm !default;
+
+$btn-icon-only-width-lg: $input-btn-icon-only-width-lg !default;
+$btn-icon-only-height-lg: $input-btn-icon-only-height-lg !default;
+
+// Forms Variables
+$input-padding-y: $input-btn-padding-y !default;
+$input-padding-x: $input-btn-padding-x !default;
+$input-btn-font-size: $font-size-sm !default;
+$input-border-radius: 0 !default;
+$input-focus-box-shadow: none !default;
+
+$form-check-input-focus-box-shadow: none !default;
+$form-check-input-checked-on-darker-shade-bg-color: $darker-shade-contrast !default;
+
+$uppercased-placeholder-font-size: $font-size-xs !default;
+$uppercased-placeholder-letter-spacing: 1px;
+
+$form-select-indicator-color: $gray-600 !default;
+
+// Carousel Elements
+$pagination-button-size: 2rem !default;
+$pagination-in-button-size: 0.5rem !default;
+$navigation-disabled-opacity: 0.3 !default;
+$navigation-hover-opacity: 0.6 !default;
+$progress-bar-height: 2px !default;
+
+// Auto Tabs
+$active-auto-tab-nav-bg: $white !default;
+
+// Accordion
+$accordion-button-bg: transparent !default;
+$accordion-button-active-bg: transparent !default;
+
+//  Delimeter Sizes
+$horizontal-line-width: 2.1875rem !default;
+
+// Media Elements sizes
+//
+// Shape Sizes
+$bg-shape-width: 1.563rem !default;
+$bg-shape-height: 1.563rem !default;
+
+// Icon
+$icon-bg-size: 3rem !default;
+
+// Client Logo Width
+$client-logo-max-width: 6.875rem !default;
+
+// Avatar Sizes
+$avatar-sm: 2.5rem;
+$avatar: 3.75rem;
+$avatar-lg: 6.25rem;
+
+// Transitions
+$transition-base: all 0.8s cubic-bezier(0.2, 1, 0.2, 1) !default;
+$btn-transition: $transition-base !default;
+$card-img-zoom-transition: $transition-base !default;
+
+// Extension Variables
+//
+// Position Values
+$position-values: (
+  "auto": auto,
+  0: 0,
+  50: 50%,
+  100: 100%,
+) !default;
+
+// Theme Colors
+$new-colors: (
+  "white": $white,
+  "black": $black,
+  "gray-100": $gray-100,
+  "gray-200": $gray-200,
+  "gray-300": $gray-300,
+  "gray-400": $gray-400,
+  "gray-400-b": $gray-400-b,
+  "gray-500": $gray-500,
+  "gray-600": $gray-600,
+  "gray-700": $gray-700,
+  "gray-800": $gray-800,
+  "gray-900": $gray-900,
+  "cyan": $cyan,
+);
+
+// Font Type
+$new-font-family: (
+  "base": $font-family-base,
+  "base-2": $font-family-base-2,
+);
+
+// Font Sizes
+$new-font-sizes: (
+  7: $font-size-sm,
+  8: $font-size-xs,
+);
+
+$new-display-font-sizes: (
+  18: 18rem,
+  15: 15rem,
+  10: 10rem,
+  7: 7rem,
+) !default;
+
+// Define size values for width and height
+$new-sizing: (
+  5: 5%,
+  10: 10%,
+  15: 15%,
+  20: 20%,
+  30: 30%,
+  35: 35%,
+  40: 40%,
+  45: 45%,
+  55: 55%,
+  60: 60%,
+  65: 65%,
+  70: 70%,
+  80: 80%,
+  85: 85%,
+  90: 90%,
+  95: 95%,
+) !default;
+
+$new-viewport-height: (
+  80: 80vh,
+  90: 90vh,
+) !default;

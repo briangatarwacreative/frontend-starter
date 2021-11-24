@@ -1,0 +1,308 @@
+.btn {
+  letter-spacing: $btn-letter-spacing;
+  text-transform: $btn-text-transform;
+}
+
+// Large Buttons Size
+.btn-lg {
+  // Icon Only Buttons
+  &.btn-icon-only {
+    height: $btn-icon-only-height-lg;
+    width: $btn-icon-only-width-lg;
+  }
+}
+
+// Small Buttons Size
+.btn-sm {
+  // Icon Only Buttons
+  &.btn-icon-only {
+    height: $btn-icon-only-height-sm;
+    width: $btn-icon-only-width-sm;
+  }
+}
+
+// Text-only Buttons
+@each $color, $value in $theme-colors {
+  .btn-text-#{$color} {
+    @include button-text($value);
+  }
+}
+.btn[class*="btn-text-"] {
+  padding: 0;
+  border-radius: 0;
+  line-height: 1;
+  @include d-flex;
+  &:hover,
+  &:focus,
+  &.focus {
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    box-shadow: none;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .btn-parent:not(:disabled):not(.disabled).active:focus &,
+  .btn-parent:not(:disabled):not(.disabled):active:focus &,
+  .show > .btn-parent.dropdown-toggle:focus & {
+    box-shadow: none;
+  }
+}
+
+// Buttons with Icons
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  .btn-icon-el {
+    @include d-flex;
+    @include transition;
+    transform: translate(0, 0);
+  }
+}
+
+// Buttons with Icons Only
+.btn-icon-only {
+  padding: 0 !important;
+  @include d-flex($justify-content: center);
+  height: $btn-icon-only-height;
+  width: $btn-icon-only-width;
+  position: relative;
+}
+
+// Buttons Expandable
+.btn-expandable {
+  padding: 0;
+  border-radius: 0;
+  line-height: 1;
+  @include d-flex;
+  .expandable-text-wrap {
+    width: 0;
+    overflow: hidden;
+    @include transition;
+    .expandable-text {
+      float: left;
+      white-space: nowrap;
+    }
+  }
+}
+
+// Rahisi Buttons Animations
+@if $enable-custom-hover-animations-for-buttons {
+  // Button Hover Translate Y Animation - Up Direction
+  .hover-translatey {
+    transform: translate(0, 0);
+
+    &.disabled,
+    &:disabled {
+      transform: translate(0, 0) !important;
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      transform: translate(0, $btn-hover-translatey-val);
+    }
+
+    &:not(:disabled):not(.disabled).active,
+    &:not(:disabled):not(.disabled):active,
+    .show > &.dropdown-toggle {
+      &:focus {
+        transform: translate(0, $btn-hover-translatey-val);
+      }
+    }
+
+    // Parent Button
+    .btn-parent.disabled &.hover-translatey,
+    .btn-parent:disabled &.hover-translatey {
+      transform: translate(0, 0) !important;
+    }
+
+    .btn-parent:hover &.hover-translatey,
+    .btn-parent:focus &.hover-translatey,
+    .btn-parent.focus &.hover-translatey {
+      transform: translate(0, $btn-hover-translatey-val);
+    }
+
+    .btn-parent:not(:disabled):not(.disabled).active:focus &.hover-translatey,
+    .btn-parent:not(:disabled):not(.disabled):active:focus &.hover-translatey,
+    .show > .btn-parent.dropdown-toggle:focus &.hover-translatey {
+      transform: translate(0, $btn-hover-translatey-val);
+    }
+  }
+
+  // Button Icon Hover - Right & Left Directions
+  .btn-icon,
+  .btn-icon-only {
+    &.icon-hover-translate-r,
+    &.icon-hover-translate-l {
+      &.disabled,
+      &:disabled {
+        .btn-icon-el {
+          transform: translate(0, 0) !important;
+        }
+      }
+    }
+
+    &.icon-hover-translate-r {
+      &:hover,
+      &:focus,
+      &.focus {
+        .btn-icon-el {
+          transform: translate($btn-hover-translater-val, 0);
+        }
+      }
+
+      &:not(:disabled):not(.disabled).active,
+      &:not(:disabled):not(.disabled):active,
+      .show > &.dropdown-toggle {
+        &:focus {
+          .btn-icon-el {
+            transform: translate($btn-hover-translater-val, 0);
+          }
+        }
+      }
+    }
+
+    a.card:hover &.icon-hover-translate-r {
+      .btn-icon-el {
+        transform: translate($btn-hover-translater-val, 0);
+      }
+    }
+
+    &.icon-hover-translate-l {
+      &:hover,
+      &:focus,
+      &.focus {
+        .btn-icon-el {
+          transform: translate($btn-hover-translatel-val, 0);
+        }
+      }
+
+      &:not(:disabled):not(.disabled).active,
+      &:not(:disabled):not(.disabled):active,
+      .show > &.dropdown-toggle {
+        &:focus {
+          .btn-icon-el {
+            transform: translate($btn-hover-translatel-val, 0);
+          }
+        }
+      }
+    }
+
+    a.card:hover &.icon-hover-translate-l {
+      .btn-icon-el {
+        transform: translate($btn-hover-translatel-val, 0);
+      }
+    }
+
+    &.btn-ring-expandable {
+      .btn-ring-expandable-text {
+        position: relative;
+        z-index: map-get($z-index, 2);
+      }
+      .icon-holder {
+        position: relative;
+        z-index: map-get($z-index, 1);
+        .btn-ring-expandable-border {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          opacity: 1;
+          z-index: map-get($z-index, 1);
+          @include transition;
+        }
+
+        .btn-ring-expandable-el {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          z-index: map-get($z-index, 2);
+          opacity: 0;
+          @include transition;
+        }
+      }
+
+      &:hover {
+        .icon-holder {
+          .btn-ring-expandable-border {
+            top: -0.5rem;
+            left: -0.5rem;
+            bottom: -0.5rem;
+            right: -0.5rem;
+            opacity: 0;
+          }
+          .btn-ring-expandable-el {
+            top: -1.5rem;
+            left: -1.5rem;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    // Parent Button
+    .btn-parent.disabled &,
+    .btn-parent:disabled & {
+      &.icon-hover-translate-r,
+      &.icon-hover-translate-l {
+        .btn-icon-el {
+          transform: translate(0, 0) !important;
+        }
+      }
+    }
+
+    .btn-parent:hover &,
+    .btn-parent:focus &,
+    .btn-parent.focus & {
+      &.icon-hover-translate-r {
+        .btn-icon-el {
+          transform: translate($btn-hover-translater-val, 0);
+        }
+      }
+    }
+
+    .btn-parent:not(:disabled):not(.disabled).active:focus &,
+    .btn-parent:not(:disabled):not(.disabled):active:focus &,
+    .show > .btn-parent.dropdown-toggle:focus & {
+      &.icon-hover-translate-r {
+        .btn-icon-el {
+          transform: translate($btn-hover-translater-val, 0);
+        }
+      }
+    }
+
+    .btn-parent:hover &,
+    .btn-parent:focus &,
+    .btn-parent.focus & {
+      &.icon-hover-translate-l {
+        .btn-icon-el {
+          transform: translate($btn-hover-translatel-val, 0);
+        }
+      }
+    }
+
+    .btn-parent:not(:disabled):not(.disabled).active:focus &,
+    .btn-parent:not(:disabled):not(.disabled):active:focus &,
+    .show > .btn-parent.dropdown-toggle:focus & {
+      &.icon-hover-translate-l {
+        .btn-icon-el {
+          transform: translate($btn-hover-translatel-val, 0);
+        }
+      }
+    }
+  }
+}

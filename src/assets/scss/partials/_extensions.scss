@@ -1,0 +1,2 @@
+// Extending Bootstrap's theme colors map
+$theme-colors: map-merge(($theme-colors), $new-colors);

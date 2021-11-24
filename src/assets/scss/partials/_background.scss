@@ -1,0 +1,34 @@
+.bg-img {
+  @include bg-sizing;
+  img {
+    display: none;
+    width: 100%;
+  }
+  &.bg-img-start {
+    background-position: 0 center;
+  }
+  &.bg-img-end {
+    background-position: 100% center;
+  }
+  &.bg-img-top {
+    background-position: center 0;
+  }
+  &.bg-img-bottom {
+    background-position: center 100%;
+  }
+}
+.darker-shade-bg {
+  .form-check-input:checked {
+    border-color: $form-check-input-checked-on-darker-shade-bg-color;
+    background-color: $form-check-input-checked-on-darker-shade-bg-color;
+  }
+
+  .form-check-input {
+    &.form-check-input-lean {
+      &:checked {
+        border-color: $form-check-input-checked-on-darker-shade-bg-color;
+      }
+      border-color: $gray-400-b;
+    }
+  }
+}

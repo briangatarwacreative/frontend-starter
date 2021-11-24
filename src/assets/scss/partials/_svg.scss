@@ -1,0 +1,28 @@
+// SVG Elements
+.svg-scaler {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 100%;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  svg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    left: 0;
+    top: 0;
+  }
+}
+.bg-shape {
+  position: absolute;
+  opacity: 0;
+  z-index: map-get($z-index, 1);
+  @include transition;
+  width: $bg-shape-width;
+  backface-visibility: hidden;
+}

@@ -1,0 +1,30 @@
+// More Type display classes
+@each $display, $font-size in $new-display-font-sizes {
+  .display-#{$display} {
+    @include font-size($font-size);
+    font-weight: $display-font-weight;
+    line-height: $display-line-height;
+  }
+}
+
+// Transparent Text
+@each $color, $value in $theme-colors {
+  .transparent-text-#{$color} {
+    -webkit-text-stroke-color: $value;
+    text-stroke-color: $value;
+    &.transparent-text-fill-hover:hover,
+    .transparent-text-fill-hover:hover & {
+      -webkit-text-fill-color: $value;
+      text-fill-color: $value;
+      color: $value;
+    }
+  }
+}
+.transparent-text {
+  -webkit-text-stroke-width: $text-transparent-stroke-width;
+  text-stroke-width: $text-transparent-stroke-width;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
+  @include transition;
+}

@@ -1,22 +1,15 @@
-const paths = require("./paths");
-const webpack = require("webpack");
-const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
+
+const common = require('./webpack.common.js')
+const paths = require('./paths')
 
 module.exports = merge(common, {
-  /**
-   * Mode
-   *
-   * Set the mode to development or production.
-   */
-  mode: "development",
+  // Set the mode to development or production
+  mode: 'development',
 
-  /**
-   * Devtool
-   *
-   * Control how source maps are generated.
-   */
-  devtool: "inline-source-map",
+  // Control how source maps are generated
+  devtool: 'inline-source-map',
 
   plugins: [
     /**
@@ -29,12 +22,12 @@ module.exports = merge(common, {
 
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require("../dist/assets/js/library-manifest.json"),
+      manifest: require('../public/assets/js/library-manifest.json'),
     }),
 
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
+      $: 'jquery',
+      jQuery: 'jquery',
     }),
   ],
-});
+})

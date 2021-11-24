@@ -1,0 +1,30 @@
+@mixin d-flex(
+  $align-items: center,
+  $flex-wrap: wrap,
+  $flex-direction: row,
+  $justify-content: flex-start
+) {
+  display: flex;
+  align-items: $align-items;
+  flex-wrap: $flex-wrap;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+}
+@mixin flex-direction($flex-direction: row) {
+  flex-direction: $flex-direction;
+}
+@mixin flex-align-items($align-items: center) {
+  align-items: $align-items;
+}
+@mixin flex-justify-content($justify-content: center) {
+  justify-content: $justify-content;
+}
+@mixin flex-item($flex-grow: 0, $flex-shrink: 1, $flex-basis: auto) {
+  flex: $flex-grow $flex-shrink $flex-basis;
+}
+@mixin flex-grow($flex-grow: 0) {
+  flex-grow: $flex-grow;
+}
+@mixin flex-item-order($flex-order: 1) {
+  order: $flex-order;
+}

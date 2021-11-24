@@ -1,0 +1,32 @@
+:root {
+  --swiper-navigation-size: 18px;
+}
+
+:focus {
+  outline: 0;
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-size: $paragraph-font-size;
+  line-height: $paragraph-line-height;
+}
+button {
+  outline: 0;
+  border: none;
+
+  &:focus {
+    outline: 0;
+  }
+}
+[class*=" bi-"]:before,
+[class^="bi-"]:before {
+  display: block;
+}
+img {
+  backface-visibility: hidden;
+}
+figure {
+  margin-bottom: 0;
+}

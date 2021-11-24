@@ -7,7 +7,7 @@ import "theia-sticky-sidebar/dist/theia-sticky-sidebar.min";
 import "magnific-popup/dist/jquery.magnific-popup.min";
 
 // Rahisi Core JS
-import "./assets/js/core/form-collect";
+import "./assets/js/core/app";
 
 // Custom Scripts
 import "./assets/js/custom";

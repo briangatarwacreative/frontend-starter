@@ -1,0 +1,36 @@
+// Transformed Elements
+.side-rotate-start,
+.side-rotate-end {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-origin: center;
+  transform: rotate(-180deg);
+  writing-mode: tb-rl;
+  @include d-flex;
+  &.side-rotate-non-shaky {
+    top: 50%;
+    height: auto;
+    width: 0;
+    transform-origin: unset;
+    transform: translate3d(0, -50%, 0);
+    writing-mode: unset;
+    display: block;
+    .side-rotated-text {
+      transform: rotate(-90deg) translate3d(-50%, 50%, 0);
+      transform-origin: left;
+      white-space: nowrap;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+.side-rotate-start {
+  left: 0;
+}
+.side-rotate-end {
+  right: 0;
+}

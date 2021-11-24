@@ -6,6 +6,7 @@ const devBuild =
 // modules
 const { src, dest, watch, series, parallel, lastRun } = require("gulp");
 const sourcemaps = devBuild ? require("gulp-sourcemaps") : null;
+const cssminify = devBuild ? null : require("gulp-css-minify");
 const browserSync = devBuild ? require("browser-sync") : null;
 const sass = require("gulp-sass");
 const dependents = require("gulp-dependents");
@@ -21,14 +22,15 @@ const fs = require("fs");
 const fileinclude = require("gulp-file-include");
 const webpack = require("webpack");
 const webpackDevConfig = require("./webpack.dev");
+const webpackProdConfig = require("./webpack.prod");
 
 // File paths
 const dir = {
-  dist: `../dist`,
+  buildFolder: devBuild ? "../public" : "../dist",
   src: `../src`,
   nodeModules: `../node_modules`,
-  get distAssets() {
-    return `${this.dist}/assets/`;
+  get buildFolderAssets() {
+    return `${this.buildFolder}/assets/`;
   },
   get htmlSrc() {
     return `${this.src}/html/`;
@@ -53,23 +55,31 @@ const dir = {
   },
 };
 
-const ignoredDir = {
-  list: ["dist/**/*", "node_modules/**/*"],
-};
-
 // JS Config
 const jsConfig = {
   src: `${dir.jsSrc}**/*`,
-  dist: `${dir.distAssets}js/`,
+  buildFolder: `${dir.buildFolderAssets}js/`,
 };
 
-// Webpack Task
-function webpackAssets(done) {
+// Webpack Dev Task
+function webpackDevAssets(done) {
   return webpack(webpackDevConfig, (err, stats) => {
     if (err) {
       throw new gutil.PluginError("webpack", err);
     } else {
-      //gutil.log("[webpackAssets]", stats.toString());
+      //gutil.log("[webpackDevAssets]", stats.toString());
+    }
+    done();
+  });
+}
+
+// Webpack Dev Task
+function webpackProdAssets(done) {
+  return webpack(webpackProdConfig, (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError("webpack", err);
+    } else {
+      //gutil.log("[webpackProdAssets]", stats.toString());
     }
     done();
   });
@@ -78,9 +88,8 @@ function webpackAssets(done) {
 // Images Config
 const imgConfig = {
   src: `${dir.imagesSrc}**/*`,
-  dist: `${dir.distAssets}imgs/`,
+  buildFolder: `${dir.buildFolderAssets}imgs/`,
   minOpts: [
-    gifsicle({ interlaced: true }),
     mozjpeg({ quality: 75, progressive: true }),
     optipng({ optimizationLevel: 5 }),
     svgo({
@@ -97,16 +106,16 @@ const imgConfig = {
 // Images Task
 function images() {
   return src(imgConfig.src)
-    .pipe(newer(imgConfig.dist))
+    .pipe(newer(imgConfig.buildFolder))
     .pipe(imagemin(imgConfig.minOpts))
     .pipe(size({ showFiles: true }))
-    .pipe(dest(imgConfig.dist));
+    .pipe(dest(imgConfig.buildFolder));
 }
 
 // CSS Config
 const cssConfig = {
   src: [`${dir.scssSrc}*.scss`, `${dir.scssSrc}**/*.scss`],
-  dist: `${dir.distAssets}css/`,
+  buildFolder: `${dir.buildFolderAssets}css/`,
   sassOpts: {
     sourceMap: devBuild,
     imagePath: "/imgs/",
@@ -117,7 +126,7 @@ const cssConfig = {
   postCSS: [
     postcssAssets({
       loadPaths: ["imgs/"],
-      basePath: dir.dist,
+      basePath: dir.buildFolder,
     }),
   ],
 };
@@ -130,7 +139,8 @@ function css(cb) {
     .pipe(sourcemaps ? sourcemaps.init() : noop())
     .pipe(sass(cssConfig.sassOpts).on("error", sass.logError))
     .pipe(sourcemaps ? sourcemaps.write() : noop())
-    .pipe(dest(cssConfig.dist))
+    .pipe(devBuild ? noop() : cssminify())
+    .pipe(dest(cssConfig.buildFolder))
     .pipe(browserSync ? browserSync.reload({ stream: true }) : noop())
     .on("end", cb);
 }
@@ -138,7 +148,7 @@ function css(cb) {
 // Fonts Config
 const fontsConfig = {
   src: `${dir.fontsSrc}**/*`,
-  build: `${dir.distAssets}fonts/`,
+  build: `${dir.buildFolderAssets}fonts/`,
 };
 
 // Fonts Task
@@ -149,12 +159,12 @@ function fonts() {
 // HTML Config
 const htmlConfig = {
   src: `${dir.htmlSrc}`,
-  dist: `${dir.dist}/`,
+  buildFolder: `${dir.buildFolder}/`,
 };
 
 // HTML Task
 function html(done) {
-  let dirents = fs.readdirSync(htmlConfig.src, {
+  const dirents = fs.readdirSync(htmlConfig.src, {
     withFileTypes: true,
   });
 
@@ -168,11 +178,11 @@ function html(done) {
               basepath: "@file",
             })
           )
-          .pipe(dest(htmlConfig.dist));
+          .pipe(dest(htmlConfig.buildFolder));
       } else {
         if (dirent.name !== "partials") {
           let subfolderPathSrc = `${htmlConfig.src}${dirent.name}/`,
-            subfolderPathDist = `${htmlConfig.dist}${dirent.name}/`;
+            subfolderPathbuildFolder = `${htmlConfig.buildFolder}${dirent.name}/`;
 
           let subfiles = fs.readdirSync(subfolderPathSrc, {
             withFileTypes: true,
@@ -185,7 +195,7 @@ function html(done) {
                   basepath: "@file",
                 })
               )
-              .pipe(dest(`${subfolderPathDist}`));
+              .pipe(dest(`${subfolderPathbuildFolder}`));
           });
         }
       }
@@ -200,33 +210,33 @@ function html(done) {
 // Videos Config
 const videoConfig = {
   src: `${dir.videosSrc}**/*`,
-  dist: `${dir.distAssets}videos/`,
+  buildFolder: `${dir.buildFolderAssets}videos/`,
 };
 
 // Videos Task
 function videos() {
   return src(videoConfig.src)
-    .pipe(newer(videoConfig.dist))
-    .pipe(dest(videoConfig.dist));
+    .pipe(newer(videoConfig.buildFolder))
+    .pipe(dest(videoConfig.buildFolder));
 }
 
 // Bootstrap SVGs
 const bootstrapSvgConfig = {
   src: `${dir.bootstrapIconsSrc}`,
-  dist: `${dir.distAssets}imgs/svgs`,
+  buildFolder: `${dir.buildFolderAssets}imgs/svgs`,
 };
 
 // Bootstrap SVGs Task
 function bootstrapSvg() {
   return src(bootstrapSvgConfig.src)
-    .pipe(newer(bootstrapSvgConfig.dist))
-    .pipe(dest(bootstrapSvgConfig.dist));
+    .pipe(newer(bootstrapSvgConfig.buildFolder))
+    .pipe(dest(bootstrapSvgConfig.buildFolder));
 }
 
 // Dev Server
 const syncConfig = {
   server: {
-    baseDir: htmlConfig.dist,
+    baseDir: htmlConfig.buildFolder,
   },
   port: 7000,
   open: true,
@@ -244,7 +254,7 @@ function serverReload(done) {
 
 function watchChanges(done) {
   // JS Watch
-  watch(jsConfig.src, series(webpackAssets, serverReload));
+  watch(jsConfig.src, series(webpackDevAssets, serverReload));
 
   // Images Watch
   watch(imgConfig.src, series(images, serverReload));
@@ -261,15 +271,24 @@ function watchChanges(done) {
   done();
 }
 
-//exports.build = series(images, css, webpackAssets);
 exports.develop = series(
   fonts,
   images,
   bootstrapSvg,
-  webpackAssets,
   css,
   html,
   videos,
+  webpackDevAssets,
   browserSyncCall,
   watchChanges
+);
+
+exports.production = series(
+  fonts,
+  images,
+  bootstrapSvg,
+  css,
+  html,
+  videos,
+  webpackProdAssets
 );

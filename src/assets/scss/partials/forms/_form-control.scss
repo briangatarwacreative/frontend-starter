@@ -1,0 +1,21 @@
+//
+
+.form-control {
+  &.uppercased-placeholder {
+    // Placeholder
+    &::placeholder {
+      font-size: $uppercased-placeholder-font-size;
+      letter-spacing: $uppercased-placeholder-letter-spacing;
+      text-transform: uppercase;
+    }
+  }
+  &.form-control-lean {
+    background-color: transparent;
+    background-position-x: right;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    padding: 0 0 0.3rem !important;
+    border-radius: 0 !important;
+  }
+}

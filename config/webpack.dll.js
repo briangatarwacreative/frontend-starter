@@ -1,24 +1,12 @@
-const paths = require("./paths");
-const commonModules = require("./common-module-loaders");
-const commonModulesResolve = require("./common-module-resolve");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const vendorPath = `${paths.src}/assets/vendor`;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
 
-module.exports = {
-  /**
-   * Context
-   *
-   * Context of requests in the manifest file
-   */
-  context: __dirname,
+const paths = require('./paths')
+const common = require('./webpack.common.js')
 
-  /**
-   * Mode
-   *
-   * Set the mode to development or production.
-   */
-  mode: "development",
+module.exports = merge(common, {
   entry: {
     /**
      * Libraries
@@ -26,53 +14,58 @@ module.exports = {
      * The less changed files that don't need rebuilding.
      */
     library: [
-      "@fortawesome/fontawesome-free/css/all.min.css",
-      "bootstrap-icons/font/bootstrap-icons.css",
-      "animate.css",
-      "swiper/css/bundle",
-      "jquery",
-      "@popperjs/core/dist/umd/popper.min.js",
-      "bootstrap/dist/js/bootstrap.min",
-      "theia-sticky-sidebar/dist/ResizeSensor.min",
-      "theia-sticky-sidebar/dist/theia-sticky-sidebar.min",
-      "magnific-popup/dist/jquery.magnific-popup.min",
-      "swiper/bundle",
-      "svg-injector",
+      '@fortawesome/fontawesome-free/css/all.min.css',
+      'bootstrap-icons/font/bootstrap-icons.css',
+      'animate.css',
+      'swiper/css/bundle',
+      'jquery',
+      '@popperjs/core/dist/umd/popper.min.js',
+      'bootstrap/dist/js/bootstrap.min',
+      'theia-sticky-sidebar/dist/ResizeSensor.min',
+      'theia-sticky-sidebar/dist/theia-sticky-sidebar.min',
+      'magnific-popup/dist/jquery.magnific-popup.min',
+      'swiper/bundle',
+      'svg-injector',
     ],
   },
-  /**
-   * Libraries
-   *
-   * Where the bundled files will be outputted.
-   */
+
+  mode: 'production',
+  devtool: false,
   output: {
-    path: `${paths.build}/assets/js`,
-    filename: "[name].dll.js",
-    library: "[name]",
-    publicPath: "",
+    path: `${paths.public}/assets/js`,
+    filename: '[name].dll.js',
+    library: '[name]',
+    publicPath: '/',
+    assetModuleFilename: 'assets/[name][ext]',
   },
+  module: {
+    rules: [
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { publicPath: '../../' },
+          },
 
-  /**
-   * Resolve
-   *
-   * Resolves 'jQuery and Popper.js module not found' error on webpack.
-   */
-  resolve: commonModulesResolve,
-
-  /**
-   * Module
-   *
-   * Determine how modules within the project are treated.
-   */
-  module: commonModules,
-
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              sourceMap: false,
+              modules: false,
+            },
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
   plugins: [
-    /**
-     * Extracted Library CSS
-     *
-     */
+    // Extracts CSS into separate files
     new MiniCssExtractPlugin({
-      filename: "../css/library.css",
+      filename: '../css/library.css',
     }),
 
     /**
@@ -83,13 +76,25 @@ module.exports = {
      * Creates a 'manifest' for the webapck.dev to connect too
      */
     new webpack.DllPlugin({
-      name: "[name]",
-      path: `${paths.build}/assets/js/library-manifest.json`,
+      name: '[name]',
+      path: `${paths.public}/assets/js/library-manifest.json`,
     }),
 
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
+      $: 'jquery',
+      jQuery: 'jquery',
     }),
   ],
-};
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin(), '...'],
+    runtimeChunk: {
+      name: 'runtime',
+    },
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+})
